@@ -13,6 +13,11 @@
 		F007AD631DEC54D4008719DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F007AD611DEC54D4008719DE /* Main.storyboard */; };
 		F007AD651DEC54D4008719DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F007AD641DEC54D4008719DE /* Assets.xcassets */; };
 		F007AD681DEC54D4008719DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F007AD661DEC54D4008719DE /* LaunchScreen.storyboard */; };
+		F007AD701DEC6337008719DE /* TodoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F007AD6F1DEC6337008719DE /* TodoManager.swift */; };
+		F0F7416C1DECB8EF000E5F16 /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F7416B1DECB8EF000E5F16 /* DatabaseHelper.swift */; };
+		F0F741A51DECB957000E5F16 /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0F741A41DECB957000E5F16 /* SQLite.framework */; };
+		F0F741A91DECBB80000E5F16 /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F741A81DECBB80000E5F16 /* TodoItem.swift */; };
+		F0F741AC1DECC31A000E5F16 /* TodoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F741AB1DECC31A000E5F16 /* TodoList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +29,12 @@
 		F007AD641DEC54D4008719DE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F007AD671DEC54D4008719DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F007AD691DEC54D4008719DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F007AD6F1DEC6337008719DE /* TodoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoManager.swift; sourceTree = "<group>"; };
+		F0F7416B1DECB8EF000E5F16 /* DatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseHelper.swift; sourceTree = "<group>"; };
+		F0F7419F1DECB94B000E5F16 /* SQLite.swift-master.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "SQLite.swift-master.xcodeproj"; path = "SQLite.swift-master/SQLite.swift-master.xcodeproj"; sourceTree = "<group>"; };
+		F0F741A41DECB957000E5F16 /* SQLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SQLite.framework; path = "melissatjhia-pset5/SQLite.swift-master/build/Debug-iphoneos/SQLite.framework"; sourceTree = "<group>"; };
+		F0F741A81DECBB80000E5F16 /* TodoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
+		F0F741AB1DECC31A000E5F16 /* TodoList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0F741A51DECB957000E5F16 /* SQLite.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +54,7 @@
 			children = (
 				F007AD5A1DEC54D4008719DE /* melissatjhia-pset5 */,
 				F007AD591DEC54D4008719DE /* Products */,
+				F0F741A31DECB957000E5F16 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +69,35 @@
 		F007AD5A1DEC54D4008719DE /* melissatjhia-pset5 */ = {
 			isa = PBXGroup;
 			children = (
+				F0F7419F1DECB94B000E5F16 /* SQLite.swift-master.xcodeproj */,
 				F007AD5B1DEC54D4008719DE /* AppDelegate.swift */,
 				F007AD5D1DEC54D4008719DE /* MasterViewController.swift */,
 				F007AD5F1DEC54D4008719DE /* DetailViewController.swift */,
 				F007AD611DEC54D4008719DE /* Main.storyboard */,
+				F0F741A81DECBB80000E5F16 /* TodoItem.swift */,
+				F0F741AB1DECC31A000E5F16 /* TodoList.swift */,
+				F0F7416B1DECB8EF000E5F16 /* DatabaseHelper.swift */,
+				F007AD6F1DEC6337008719DE /* TodoManager.swift */,
 				F007AD641DEC54D4008719DE /* Assets.xcassets */,
 				F007AD661DEC54D4008719DE /* LaunchScreen.storyboard */,
 				F007AD691DEC54D4008719DE /* Info.plist */,
 			);
 			path = "melissatjhia-pset5";
+			sourceTree = "<group>";
+		};
+		F0F741A01DECB94B000E5F16 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F0F741A31DECB957000E5F16 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F0F741A41DECB957000E5F16 /* SQLite.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -115,6 +148,12 @@
 			mainGroup = F007AD4F1DEC54D3008719DE;
 			productRefGroup = F007AD591DEC54D4008719DE /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = F0F741A01DECB94B000E5F16 /* Products */;
+					ProjectRef = F0F7419F1DECB94B000E5F16 /* SQLite.swift-master.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				F007AD571DEC54D3008719DE /* melissatjhia-pset5 */,
@@ -141,7 +180,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				F007AD601DEC54D4008719DE /* DetailViewController.swift in Sources */,
+				F0F741AC1DECC31A000E5F16 /* TodoList.swift in Sources */,
+				F0F7416C1DECB8EF000E5F16 /* DatabaseHelper.swift in Sources */,
+				F007AD701DEC6337008719DE /* TodoManager.swift in Sources */,
 				F007AD5E1DEC54D4008719DE /* MasterViewController.swift in Sources */,
+				F0F741A91DECBB80000E5F16 /* TodoItem.swift in Sources */,
 				F007AD5C1DEC54D4008719DE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -266,6 +309,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = WG239Y9EWK;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/melissatjhia-pset5/SQLite.swift-master/build/Debug-iphoneos",
+				);
 				INFOPLIST_FILE = "melissatjhia-pset5/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "nl.mprog.melissatjhia-pset5";
@@ -279,6 +326,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = WG239Y9EWK;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/melissatjhia-pset5/SQLite.swift-master/build/Debug-iphoneos",
+				);
 				INFOPLIST_FILE = "melissatjhia-pset5/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "nl.mprog.melissatjhia-pset5";
@@ -306,6 +357,7 @@
 				F007AD6E1DEC54D4008719DE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
