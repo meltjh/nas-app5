@@ -31,11 +31,14 @@ class TodoList {
         get {
             return self._todos
         }
+        set(todosValue) {
+            self._todos = todosValue
+        }
     }
 
-    init(nameValue: String) {
-        self._name = nameValue
-        self._id = nil
+    init(id: Int64, name: String) {
+        self._name = name
+        self._id = id
         self._todos = []
     }
 }

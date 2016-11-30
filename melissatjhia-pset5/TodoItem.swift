@@ -11,13 +11,13 @@ import UIKit
 
 class TodoItem {
     
-    private var _title: String
-    var title: String {
+    private var _name: String
+    var name: String {
         get {
-            return self._title
+            return self._name
         }
-        set(titleValue) {
-            self._title = titleValue
+        set(nameValue) {
+            self._name = nameValue
         }
     }
     
@@ -37,65 +37,10 @@ class TodoItem {
             self._completed = completedValue
         }
     }
-    
-    private var _picture: NSObjectFileImage?
-    var picture: NSObjectFileImage? {
-        get {
-            return self._picture
-        }
-        set(pictureValue) {
-            self._picture = pictureValue
-        }
-    }
-    
-    private var _duration: Int?
-    var duration: Int? {
-        get {
-            return self._duration
-        }
-        set(durationValue) {
-            self._duration = durationValue
-        }
-    }
-    
-    private var _backgroundColor: UIColor?
-    var backgroundColor: UIColor? {
-        get {
-            return self._backgroundColor
-        }
-        set(backgroundColorValue) {
-            self._backgroundColor = backgroundColorValue
-        }
-    }
-    
-    private var _inProgress: Bool
-    var inProgress: Bool {
-        get {
-            return self._inProgress
-        }
-        set(inProgressValue) {
-            self._inProgress = inProgressValue
-        }
-    }
-    
-    private var _description: String?
-    var description: String? {
-        get {
-            return self._description
-        }
-        set(descriptionValue) {
-            self._description = descriptionValue
-        }
-    }
-    
-    init(taskValue: String, idValue: Int64) {
-        self._title = taskValue
-        self._id = idValue
+
+    init(name: String, id: Int64) {
+        self._name = name
+        self._id = id
         self._completed = false
-        self._picture = nil
-        self._duration = nil
-        self._backgroundColor = nil
-        self._inProgress = false
-        self._description = nil
     }
 }

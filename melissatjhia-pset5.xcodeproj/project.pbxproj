@@ -15,7 +15,6 @@
 		F007AD681DEC54D4008719DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F007AD661DEC54D4008719DE /* LaunchScreen.storyboard */; };
 		F007AD701DEC6337008719DE /* TodoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F007AD6F1DEC6337008719DE /* TodoManager.swift */; };
 		F0F7416C1DECB8EF000E5F16 /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F7416B1DECB8EF000E5F16 /* DatabaseHelper.swift */; };
-		F0F741A51DECB957000E5F16 /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0F741A41DECB957000E5F16 /* SQLite.framework */; };
 		F0F741A91DECBB80000E5F16 /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F741A81DECBB80000E5F16 /* TodoItem.swift */; };
 		F0F741AC1DECC31A000E5F16 /* TodoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F741AB1DECC31A000E5F16 /* TodoList.swift */; };
 /* End PBXBuildFile section */
@@ -32,7 +31,6 @@
 		F007AD6F1DEC6337008719DE /* TodoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoManager.swift; sourceTree = "<group>"; };
 		F0F7416B1DECB8EF000E5F16 /* DatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseHelper.swift; sourceTree = "<group>"; };
 		F0F7419F1DECB94B000E5F16 /* SQLite.swift-master.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "SQLite.swift-master.xcodeproj"; path = "SQLite.swift-master/SQLite.swift-master.xcodeproj"; sourceTree = "<group>"; };
-		F0F741A41DECB957000E5F16 /* SQLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SQLite.framework; path = "melissatjhia-pset5/SQLite.swift-master/build/Debug-iphoneos/SQLite.framework"; sourceTree = "<group>"; };
 		F0F741A81DECBB80000E5F16 /* TodoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
 		F0F741AB1DECC31A000E5F16 /* TodoList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -42,7 +40,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F0F741A51DECB957000E5F16 /* SQLite.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,7 +92,6 @@
 		F0F741A31DECB957000E5F16 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F0F741A41DECB957000E5F16 /* SQLite.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
