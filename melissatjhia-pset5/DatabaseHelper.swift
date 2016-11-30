@@ -137,6 +137,7 @@ class DatabaseHelper {
     /// Deletes the entry of a list from the database.
     func deleteList(listId: Int64) throws {
         do {
+            print(listId)
             _ = try db!.run(todo_list.filter(listId == self.listId).delete())
             _ = try db!.run(todo_item.filter(listId == self.listId).delete())
         } catch {

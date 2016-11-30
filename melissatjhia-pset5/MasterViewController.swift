@@ -46,11 +46,13 @@ class MasterViewController: UITableViewController {
         TodoManager.sharedInstance.readTodos()
         for list in TodoManager.sharedInstance.todoLists {
             objects.insert(list.name, at: 0)
+            print(list.id, list.name)
         }
     }
 
     @IBAction func insertNewList(_ sender: Any) {
-        insertNewObject(sender)    }
+        insertNewObject(sender)
+    }
     
     func insertNewObject(_ sender: Any) {
         objects.insert(inputListTextField.text!, at: 0)
@@ -59,6 +61,8 @@ class MasterViewController: UITableViewController {
         
         TodoManager.sharedInstance.writeTodos(listTitle: inputListTextField.text!)
         TodoManager.sharedInstance.readTodos()
+        
+        inputListTextField.text = ""
 
     }
 
@@ -101,10 +105,13 @@ class MasterViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let listToRemove = TodoManager.sharedInstance.todoLists[indexPath.row]
-            print(listToRemove.name)
+            let listToRemove = TodoManager.sharedInstance.todoLists.reversed()[indexPath.row]
+
+            TodoManager.sharedInstance.deleteTodoList(listId: listToRemove.id!)
+            
             objects.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }

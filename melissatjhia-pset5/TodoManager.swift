@@ -39,11 +39,20 @@ class TodoManager {
     func writeTodos(listTitle: String) {
         do {
             try db!.createList(listTitle: listTitle)
+            readTodos()
 //            self.TasksTableView.reloadData()
         } catch {
             print(error)
         }
-
+    }
+    
+    func deleteTodoList(listId: Int64) {
+        do {
+            try db!.deleteList(listId: listId)
+            readTodos()
+        } catch {
+            print(error)
+        }
     }
     
 }
