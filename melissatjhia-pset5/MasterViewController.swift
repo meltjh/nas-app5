@@ -14,6 +14,10 @@ class MasterViewController: UITableViewController {
     
     var detailViewController: DetailViewController? = nil
     var objects = [Any]()
+    
+    var savedRow: IndexPath?
+    
+
     //    var todoList: TodoList
     
     
@@ -28,7 +32,6 @@ class MasterViewController: UITableViewController {
             let controllers = split.viewControllers
             self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
-        
         updateTableContent()
 
     }
@@ -114,15 +117,27 @@ class MasterViewController: UITableViewController {
             
             objects.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-            
-            //            let indexPath = IndexPath(row: 0, section: 0)
-            //            tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
-            
+
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
     }
+
+    override func encodeRestorableState(with coder: NSCoder) {
+        coder.encode(self.tableView.indexPathForSelectedRow, forKey: "indexPathForSelectedRow")
+        super.encodeRestorableState(with: coder)
+    }
     
+    override func decodeRestorableState(with coder: NSCoder) {
+        savedRow = coder.decodeObject(forKey: "indexPathForSelectedRow") as! IndexPath?
+        super.decodeRestorableState(with: coder)
+    }
+    
+    override func applicationFinishedRestoringState() {
+        guard let savedRow = savedRow else { return }
+        self.tableView.selectRow(at: savedRow, animated: false, scrollPosition: UITableViewScrollPosition.middle)
+    }
+
     
 }
 

@@ -14,10 +14,26 @@
 		F007AD651DEC54D4008719DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F007AD641DEC54D4008719DE /* Assets.xcassets */; };
 		F007AD681DEC54D4008719DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F007AD661DEC54D4008719DE /* LaunchScreen.storyboard */; };
 		F007AD701DEC6337008719DE /* TodoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F007AD6F1DEC6337008719DE /* TodoManager.swift */; };
+		F0D1C9051DF0B67F008DEE99 /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0D1C9041DF0B67F008DEE99 /* SQLite.framework */; };
+		F0D1C9061DF0B67F008DEE99 /* SQLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F0D1C9041DF0B67F008DEE99 /* SQLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F0F7416C1DECB8EF000E5F16 /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F7416B1DECB8EF000E5F16 /* DatabaseHelper.swift */; };
 		F0F741A91DECBB80000E5F16 /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F741A81DECBB80000E5F16 /* TodoItem.swift */; };
 		F0F741AC1DECC31A000E5F16 /* TodoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F741AB1DECC31A000E5F16 /* TodoList.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F0D1C9081DF0B67F008DEE99 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F0D1C9061DF0B67F008DEE99 /* SQLite.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		F007AD581DEC54D4008719DE /* melissatjhia-pset5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "melissatjhia-pset5.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -29,6 +45,7 @@
 		F007AD671DEC54D4008719DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F007AD691DEC54D4008719DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F007AD6F1DEC6337008719DE /* TodoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoManager.swift; sourceTree = "<group>"; };
+		F0D1C9041DF0B67F008DEE99 /* SQLite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SQLite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0F7416B1DECB8EF000E5F16 /* DatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseHelper.swift; sourceTree = "<group>"; };
 		F0F7419F1DECB94B000E5F16 /* SQLite.swift-master.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "SQLite.swift-master.xcodeproj"; path = "SQLite.swift-master/SQLite.swift-master.xcodeproj"; sourceTree = "<group>"; };
 		F0F741A81DECBB80000E5F16 /* TodoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
@@ -40,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0D1C9051DF0B67F008DEE99 /* SQLite.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +84,7 @@
 		F007AD5A1DEC54D4008719DE /* melissatjhia-pset5 */ = {
 			isa = PBXGroup;
 			children = (
+				F0D1C9041DF0B67F008DEE99 /* SQLite.framework */,
 				F0F7419F1DECB94B000E5F16 /* SQLite.swift-master.xcodeproj */,
 				F007AD5B1DEC54D4008719DE /* AppDelegate.swift */,
 				F007AD5D1DEC54D4008719DE /* MasterViewController.swift */,
@@ -106,6 +125,7 @@
 				F007AD541DEC54D3008719DE /* Sources */,
 				F007AD551DEC54D3008719DE /* Frameworks */,
 				F007AD561DEC54D3008719DE /* Resources */,
+				F0D1C9081DF0B67F008DEE99 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
