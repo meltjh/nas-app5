@@ -36,7 +36,7 @@ class TodoManager {
         }
     }
     
-    func writeTodos(listTitle: String) {
+    func writeTodoList(listTitle: String) {
         do {
             try db!.createList(listTitle: listTitle)
             readTodos()
@@ -55,4 +55,32 @@ class TodoManager {
         }
     }
     
+    func writeTodos(itemTitle: String, listId: Int64) {
+        do {
+            try db!.createItem(itemTitle: itemTitle, listId: listId)
+            readTodos()
+            //            self.TasksTableView.reloadData()
+        } catch {
+            print(error)
+        }
+    }
+    
+    func deleteTodos(itemId: Int64) {
+        do {
+            try db!.deleteItem(itemId: itemId)
+            readTodos()
+        } catch {
+            print(error)
+        }
+    }
+    
+    func updateCompletedTodos(itemId: Int64, completed: Bool) {
+        do {
+            try db!.update(itemId: itemId, completed: !completed)
+            readTodos()
+        } catch {
+            print(error)
+        }
+        
+    }
 }
