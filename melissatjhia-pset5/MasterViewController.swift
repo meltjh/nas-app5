@@ -14,26 +14,19 @@ class MasterViewController: UITableViewController {
     
     var detailViewController: DetailViewController? = nil
     var objects = [Any]()
-    
     var savedRow: IndexPath?
-    
-
-    //    var todoList: TodoList
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         self.navigationItem.leftBarButtonItem = self.editButtonItem
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
         self.navigationItem.rightBarButtonItem = addButton
         if let split = self.splitViewController {
             let controllers = split.viewControllers
-            self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
+            self.detailViewController = (controllers[controllers.count - 1] as! UINavigationController).topViewController as? DetailViewController
         }
-        updateTableContent()
-
+        updateWithContentFromDatabase()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,10 +36,12 @@ class MasterViewController: UITableViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-    func updateTableContent() {
+    // MARK: - Changes to the TodoLists (Adding/Removing)
+    
+    /// Reads the newest data from the database and the list with the list names is updated.
+    func updateWithContentFromDatabase() {
         objects = []
         TodoManager.sharedInstance.readTodos()
         for list in TodoManager.sharedInstance.todoLists {
@@ -54,17 +49,16 @@ class MasterViewController: UITableViewController {
         }
     }
     
+    /// Call function when tapping return.
     @IBAction func insertNewList(_ sender: Any) {
         insertNewObject(sender)
     }
     
+    /// Insert new TodoList into the database.
     func insertNewObject(_ sender: Any) {
-        objects.insert(inputListTextField.text!, at: 0)
-        let indexPath = IndexPath(row: 0, section: 0)
-        self.tableView.insertRows(at: [indexPath], with: .automatic)
-        
         TodoManager.sharedInstance.writeTodoList(listTitle: inputListTextField.text!)
-        TodoManager.sharedInstance.readTodos()
+        updateWithContentFromDatabase()
+        self.tableView.reloadData()
         
         inputListTextField.text = ""
         
@@ -75,7 +69,6 @@ class MasterViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
-                //                let object = objects[indexPath.row] as! String
                 let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
                 let todoList = TodoManager.sharedInstance.todoLists.reversed()[indexPath.row]
                 controller.todoList = todoList
@@ -104,7 +97,6 @@ class MasterViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
         return true
     }
     
@@ -113,16 +105,13 @@ class MasterViewController: UITableViewController {
             let listToRemove = TodoManager.sharedInstance.todoLists.reversed()[indexPath.row]
             
             TodoManager.sharedInstance.deleteTodoList(listId: listToRemove.id!)
-            TodoManager.sharedInstance.readTodos()
-            
-            objects.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+            updateWithContentFromDatabase()
+            self.tableView.reloadData()
+            performSegue(withIdentifier: "showDetail", sender: self)
         }
     }
-
+    
+    // MARK: - State restoration
     override func encodeRestorableState(with coder: NSCoder) {
         coder.encode(self.tableView.indexPathForSelectedRow, forKey: "indexPathForSelectedRow")
         super.encodeRestorableState(with: coder)
@@ -136,8 +125,9 @@ class MasterViewController: UITableViewController {
     override func applicationFinishedRestoringState() {
         guard let savedRow = savedRow else { return }
         self.tableView.selectRow(at: savedRow, animated: false, scrollPosition: UITableViewScrollPosition.middle)
+        performSegue(withIdentifier: "showDetail", sender: self)
     }
-
+    
     
 }
 

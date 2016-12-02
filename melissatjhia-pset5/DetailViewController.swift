@@ -10,7 +10,6 @@ import UIKit
 
 class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    //    @IBOutlet weak var detailDescriptionLabel: UILabel!
     @IBOutlet weak var inputItemTextField: UITextField!
     @IBOutlet weak var todoItemsTableView: UITableView!
     
@@ -18,16 +17,20 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var objects: Array<Any> = []
     
     func configureView() {
-        // Update the user interface for the detail item.
         if let list = todoList {
             listId = (list.id)!
             updateObjects()
+        }
+        else {
+            todoItemsTableView.isHidden = true
+            self.navigationItem.leftBarButtonItem = nil
+            self.navigationItem.rightBarButtonItem = nil
+            inputItemTextField.isHidden = true
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         self.navigationItem.leftBarButtonItem = self.editButtonItem
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
@@ -37,17 +40,17 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
+    
+    // MARK: - Changes to the TodoItems (Adding/Removing/Completing)
     
     var todoList: TodoList? {
         didSet {
-            print("before")
             self.configureView()
-            print("after")
         }
     }
     
+    /// Update the data used in the view with the data in the database.
     func updateDataViewFromDatabase() {
         TodoManager.sharedInstance.readTodos()
         for todoList in  TodoManager.sharedInstance.todoLists {
@@ -58,6 +61,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
+    /// Update the list of TodoItem names that is shown in the TableView.
     func updateObjects() {
         objects = []
         for todoItem in (todoList?.todos)! {
@@ -65,20 +69,17 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
+    /// Call function when tapping return.
     @IBAction func insertNewItem(_ sender: Any) {
         insertNewObject(sender)
     }
     
+    /// Insert new TodoItem into the database.
     func insertNewObject(_ sender: Any) {
-        objects.insert(inputItemTextField.text!, at: 0)
-        
-        let indexPath = IndexPath(row: 0, section: 0)
-        
-        todoItemsTableView.insertRows(at: [indexPath], with: .automatic)
-        
         TodoManager.sharedInstance.writeTodos(itemTitle: inputItemTextField.text!, listId: listId!)
-        TodoManager.sharedInstance.readTodos()
+        updateDataViewFromDatabase()
         
+        todoItemsTableView.reloadData()
         inputItemTextField.text = ""
     }
     
@@ -94,29 +95,26 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.textLabel?.attributedText = attribute
     }
     
+    // MARK: - Table View
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return objects.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "listCell", for: indexPath)
-        
-        let object = objects[indexPath.row] as! String
+        let object = objects.reversed()[indexPath.row] as! String
         cell.textLabel!.text = object.description
-        
         strikeThrough(cell: cell, completed: (todoList?.todos.reversed()[indexPath.row].completed)!)
-        
         return cell
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
         return true
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            //            print(todoList?.todos[indexPath.row].name)
             let itemToRemove = todoList?.todos.reversed()[indexPath.row]
             
             TodoManager.sharedInstance.deleteTodos(itemId: itemToRemove!.id)
@@ -128,6 +126,8 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
     }
+    
+    // MARK: - TodoItem actions
     
     /// Delete and (un)check buttons that appear when swiping to the right.
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
@@ -155,7 +155,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         // The (un)check button
         let check = UITableViewRowAction(style: .normal, title: buttonTitle) { (action, indexPath) in
-            
             TodoManager.sharedInstance.updateCompletedTodos(itemId: (taskToChangeInDB?.id)!, completed: (taskToChangeInDB?.completed)!)
             
             self.updateDataViewFromDatabase()

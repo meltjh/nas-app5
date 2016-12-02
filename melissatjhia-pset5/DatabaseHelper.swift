@@ -12,13 +12,11 @@ import SQLite
 class DatabaseHelper {
     private let todo_item = Table("todo_item")
     private let todo_list = Table("todo_list")
-    
     private let itemId = Expression<Int64>("id")
     private let listId = Expression<Int64>("list_id")
     private let itemName = Expression<String?>("item_name")
     private let completed = Expression<Bool>("completed")
     private let listName = Expression<String>("list_name")
-    
     private var db: Connection?
     
     init? () {
@@ -64,7 +62,7 @@ class DatabaseHelper {
         }
     }
     
-    /// Creates a todoItem entry.
+    /// Creates a TodoItem entry.
     func createItem(itemTitle: String, listId: Int64) throws {
         let insert = todo_item.insert(self.itemName <- itemTitle, self.completed <- false, self.listId <- listId)
         
@@ -75,7 +73,7 @@ class DatabaseHelper {
         }
     }
     
-    /// Creates a todoList entry.
+    /// Creates a TodoList entry.
     func createList(listTitle: String) throws {
         let insert = todo_list.insert(self.listName <- listTitle)
         
@@ -103,6 +101,7 @@ class DatabaseHelper {
         return todoList
     }
     
+    /// Makes a list that consists of all the TodoLists.
     func readAllTodoLists() throws -> Array<TodoList> {
         var allTodoLists: Array<TodoList> = []
         
@@ -116,7 +115,7 @@ class DatabaseHelper {
         return allTodoLists
     }
     
-    /// Updates the check status of a task in the database.
+    /// Updates the check status of a TodoItem in the database.
     func update(itemId: Int64, completed: Bool) throws {
         do {
             _ = try db!.run(todo_item.filter(itemId == self.itemId).update(self.completed <- completed))
@@ -125,7 +124,7 @@ class DatabaseHelper {
         }
     }
     
-    /// Deletes the entry of a task from the database.
+    /// Deletes the entry of a TodoItem from the database.
     func deleteItem(itemId: Int64) throws {
         do {
             _ = try db!.run(todo_item.filter(itemId == self.itemId).delete())
@@ -134,10 +133,9 @@ class DatabaseHelper {
         }
     }
     
-    /// Deletes the entry of a list from the database.
+    /// Deletes the entry of a TodoList from the database and the TodoItems that belong to it.
     func deleteList(listId: Int64) throws {
         do {
-            print(listId)
             _ = try db!.run(todo_list.filter(listId == self.listId).delete())
             _ = try db!.run(todo_item.filter(listId == self.listId).delete())
         } catch {

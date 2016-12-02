@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+/// The TodoItem class stores a name, an id and whether or not the task is completed.
 class TodoItem {
     
     private var _name: String
@@ -37,7 +38,7 @@ class TodoItem {
             self._completed = completedValue
         }
     }
-
+    
     init(name: String, id: Int64) {
         self._name = name
         self._id = id

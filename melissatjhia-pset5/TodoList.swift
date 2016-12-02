@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// The TodoList class stores an id, a name and a list of TodoItems.
 class TodoList {
     private var _id: Int64?
     var id: Int64? {
@@ -35,7 +36,7 @@ class TodoList {
             self._todos = todosValue
         }
     }
-
+    
     init(id: Int64, name: String) {
         self._name = name
         self._id = id
